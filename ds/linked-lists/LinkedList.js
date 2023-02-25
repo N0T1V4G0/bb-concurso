@@ -12,6 +12,17 @@ class LinkedList {
     this.length = 1;
   }
 
+  lookup(index) {
+    let currentNode = this.head;
+    let i = 0;
+
+    while (i != index) {
+      currentNode = currentNode.next;
+      i++;
+    }
+    return currentNode;
+  }
+
   printList() {
     const nodes = [];
     let currentNode = this.head;
