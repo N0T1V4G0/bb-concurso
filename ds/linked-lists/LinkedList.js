@@ -12,6 +12,16 @@ class LinkedList {
     this.length = 1;
   }
 
+  printList() {
+    const nodes = [];
+    let currentNode = this.head;
+    while (currentNode != null) {
+      nodes.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+    console.log(nodes);
+  }
+
   append(value) {
     const newNode = new ListNode(value);
     this.tail.next = newNode;
@@ -34,3 +44,4 @@ lklist.append(5);
 lklist.append(50);
 lklist.prepend(100);
 lklist.prepend(200);
+lklist.printList();
