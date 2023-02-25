@@ -50,23 +50,17 @@ class LinkedList {
   }
 
   insert(index, value) {
-    const newNode = new ListNode(value);
-    let currentNode = this.head;
-    let prevNode = null;
-    let i = 0;
-
     if (index === 0) return this.prepend(value);
     if (index >= this.length) return this.append(value);
 
-    while (i < index) {
-      prevNode = currentNode;
-      currentNode = currentNode.next;
-      i++;
-    }
+    const newNode = new ListNode(value);
 
-    prevNode.next = newNode;
-    newNode.next = currentNode;
+    const leaderNode = this.lookup(index - 1);
+    const nextNode = leaderNode.next;
+    leaderNode.next = newNode;
+    newNode.next = nextNode;
     this.length++;
+    return this;
   }
 
   remove(index) {
@@ -94,4 +88,6 @@ ll.printList();
 ll.remove(0);
 ll.printList();
 ll.remove(3);
+ll.printList();
+ll.insert(2, 0);
 ll.printList();
