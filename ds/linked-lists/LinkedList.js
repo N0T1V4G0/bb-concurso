@@ -37,6 +37,26 @@ class LinkedList {
     this.length++;
     return this;
   }
+
+  insert(index, value) {
+    const newNode = new ListNode(value);
+    let currentNode = this.head;
+    let prevNode = null;
+    let i = 0;
+
+    if (index === 0) return this.prepend(value);
+    if (index >= this.length) return this.append(value);
+
+    while (i < index) {
+      prevNode = currentNode;
+      currentNode = currentNode.next;
+      i++;
+    }
+
+    prevNode.next = newNode;
+    newNode.next = currentNode;
+    this.length++;
+  }
 }
 
 const lklist = new LinkedList(10);
@@ -44,4 +64,6 @@ lklist.append(5);
 lklist.append(50);
 lklist.prepend(100);
 lklist.prepend(200);
+lklist.printList();
+lklist.insert(300, 300);
 lklist.printList();
