@@ -16,7 +16,7 @@ class LinkedList {
     let currentNode = this.head;
     let i = 0;
 
-    while (i != index) {
+    while (i < index) {
       currentNode = currentNode.next;
       i++;
     }
@@ -68,13 +68,30 @@ class LinkedList {
     newNode.next = currentNode;
     this.length++;
   }
+
+  remove(index) {
+    if (index > this.length) throw new Error('index out of range');
+    if (index === 0) {
+      this.head = this.head.next;
+      this.length--;
+      return this;
+    }
+
+    let leaderNode = this.lookup(index - 1);
+    let toBeDeletedNode = leaderNode.next;
+    leaderNode.next = toBeDeletedNode.next;
+    this.length--;
+    return this;
+  }
 }
 
-const lklist = new LinkedList(10);
-lklist.append(5);
-lklist.append(50);
-lklist.prepend(100);
-lklist.prepend(200);
-lklist.printList();
-lklist.insert(300, 300);
-lklist.printList();
+const ll = new LinkedList(10);
+ll.append(20);
+ll.append(50);
+ll.prepend(100);
+ll.prepend(200);
+ll.printList();
+ll.remove(0);
+ll.printList();
+ll.remove(3);
+ll.printList();
