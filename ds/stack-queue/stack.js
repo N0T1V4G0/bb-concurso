@@ -31,6 +31,15 @@ class Stack {
     this.length++;
     return this;
   }
+
+  pop() {
+    if (!this.top) return null;
+    if (this.top === this.bottom) this.bottom = null;
+    const nextNode = this.top.next;
+    this.top = nextNode;
+    this.length--;
+    return this;
+  }
 }
 
 const st = new Stack();
@@ -38,5 +47,7 @@ st.push('hey');
 st.push('hey2');
 st.push('hey3');
 st.push('hey4');
+st.peek();
+st.pop();
 st.peek();
 console.log(st);
